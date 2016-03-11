@@ -1,0 +1,187 @@
+package wordsgui;
+
+import java.awt.*;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.TextListener;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.*;
+
+/**
+ *
+ * @author mark
+ */
+public class WordsGUI extends JFrame {
+
+    private static JButton playBtn, scoreBtn, addwordBtn, exitBtn;
+    private static JPanel mainMenuPanel, pnl;
+    private static JTextField uNField, pWField;
+    private static JButton submit;
+    private static String[] pNames;
+    
+    
+    public void main(String[] args) {
+       new GUIContent();  
+    }
+
+    
+    
+class GUIContent extends JFrame{
+    
+    private JButton playBtn, scoreBtn, wordBtn, exitBtn;
+    private JPanel mainMenuPanel, pnl;
+    private JTextField uNField, pWField;
+    String[] pNames;
+    int[] scores;
+    int playerCounter;
+
+    public GUIContent(){
+        pNames = new String[2];
+        scores = new int[2];
+        mainMenu();
+    }
+
+    public void mainMenu()
+    {
+       JPanel mainMenuPanel = new JPanel();
+        //window.setTitle("Word Game");
+        playBtn = new JButton("Start Game");
+        scoreBtn = new JButton("Show Score");
+        addwordBtn = new JButton("Add Word");
+        exitBtn = new JButton("Exit");
+        
+        playBtn.addKeyListener(new Buttons());
+        scoreBtn.addKeyListener(new Buttons());
+        addwordBtn.addKeyListener(new Buttons());
+        exitBtn.addKeyListener(new Buttons());
+        
+        mainMenuPanel.setLayout(new GridLayout(4,0,10,10));
+        mainMenuPanel.add(playBtn);
+        mainMenuPanel.add(scoreBtn);
+        mainMenuPanel.add(addwordBtn);
+        mainMenuPanel.add(exitBtn);
+        
+        //button holder is pnl
+        pnl = new JPanel();
+        pnl.add(mainMenuPanel);
+        add(pnl);
+        
+        setSize(300,200);
+        setVisible(true);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);  
+    }
+    
+     private class Buttons implements KeyListener {
+
+        public void actionPerformed(ActionEvent e) {
+            
+            if (e.getSource() == playBtn) {
+                remove(pnl);
+               
+            } else if (e.getSource() == addwordBtn) {
+                
+
+            } else if (e.getSource() == scoreBtn) {
+                
+
+            }
+            
+            JOptionPane.showMessageDialog(null, "yay");
+            
+        }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                return;
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                return;
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                return;
+            }
+    }
+     
+     private class gameBtns implements KeyListener {
+
+        public void actionPerformed(ActionEvent e) {
+            
+            if (e.getSource() == playBtn) {
+                remove(pnl);
+                setVisible(false);
+                pNames[playerCounter]=uNField.getText();
+                if (playerCounter == 0)
+                {
+                    
+                    playerCounter++;
+                    userLogin();
+                    
+                }else{
+                    Game();
+                }
+               
+            } else if (e.getSource() == addwordBtn) {
+                
+
+            } else if (e.getSource() == scoreBtn) {
+                
+
+            }
+            
+            JOptionPane.showMessageDialog(null, "yay");
+            
+        }
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+                return;
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                return;
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                return;
+            }
+    }
+     
+     private void gameController()
+     {
+         userLogin();
+         Game();
+         
+     }
+     
+    private void userLogin()
+    {
+            uNField =  new JTextField(20);
+            pWField = new JTextField(20);
+            mainMenuPanel = new JPanel();
+            playBtn = new JButton("Sign-in/up");
+            playBtn.addKeyListener(new gameBtns());
+            mainMenuPanel.setLayout(new GridLayout(3, 0, 10, 10));
+            mainMenuPanel.add(uNField);
+            mainMenuPanel.add(pWField);
+            mainMenuPanel.add(playBtn);
+            pnl = new JPanel();
+            pnl.add(mainMenuPanel);
+            add(pnl);
+            repaint();
+            setVisible(true);
+    
+    }
+  }
+}
