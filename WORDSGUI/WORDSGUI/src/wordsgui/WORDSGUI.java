@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  *
- * @author bjozeabbaschian
+ * @author Mark
  */
 public class WORDSGUI {
 
@@ -20,7 +20,7 @@ public class WORDSGUI {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+
         new GUIContent();
     }
 }
