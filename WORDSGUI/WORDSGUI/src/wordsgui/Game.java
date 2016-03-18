@@ -15,7 +15,7 @@ import javax.swing.*;
 
 /**
  *
- * @author bjozeabbaschian
+ * @author Mark
  */
 public class Game extends JPanel {
 
